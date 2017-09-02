@@ -15,8 +15,7 @@
     <link href="css/prettyPhoto.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
     <link href="css/responsive.css" rel="stylesheet">
-
-    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <link href="css/bootstrap-toggle.min.css" rel="stylesheet">
 
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
@@ -101,22 +100,11 @@
                                         
                                         <div class="col-sm-offset-1" id="echo_eccal"></div>
                                         <hr>
-                                        <input type="checkbox" data-toggle="toggle" data-on="NO" data-off="OFF"> Circulating Pump
+                                        <input type="checkbox" id="pump_btn" data-toggle="toggle" data-on="NO" data-off="OFF"> Circulating Pump
                                         <hr>
-                                        <input type="checkbox" data-toggle="toggle" data-on="NO" data-off="OFF"> Grow Light
+                                        <input type="checkbox" id="light_btn" data-toggle="toggle" data-on="NO" data-off="OFF"> Grow Light
                                         <hr>
-                                        <input type="checkbox" data-toggle="toggle" data-on="Open" data-off="Close"> CO2 Valve
-
-<!--
-                                        <div class="row">    
-                                            <label class="col-sm-4 control-label">Pump</label>
-                                            <div class="col-sm-8" id="mist_status">OFF</div>
-                                            <div class="col-sm-12 text-center">                                            
-                                                    <input type="button" class="btn btn-primary" value="ON" id="miston"> 
-                                                    <input type="button" class="btn btn-primary" value="OFF" id="mistoff"> 
-                                            </div>                                               
-                                        </div>
--->
+                                        <input type="checkbox" id="co2_btn" data-toggle="toggle" data-on="Open" data-off="Close"> CO2 Valve
 
                                   </div>
                                 </div>
@@ -196,8 +184,8 @@
     <script src="js/raphael-2.1.4.min.js"></script>
     <script src="js/justgage.js"></script>
     <script src="js/microgear.js"></script>
+    <script src="js/bootstrap-toggle.min.js"></script>
     <script src="default.js"></script>
-    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
 </body>
 </html>

@@ -12,45 +12,41 @@ var microgear = Microgear.create({
 
 microgear.on('message',function(topic,msg) {
     printMsg(topic,msg);
+    if (topic == "/PudzaSOI/gearname/web") {
+        
+        var relays = msg.split(',');
+       if (relays[0] ==  '1')
+            $('#pump_btn').prop('checked', true).change();
+        else
+            $('#pump_btn').prop('checked', false).change();
+       if (relays[1] ==  '1')
+            $('#light_btn').prop('checked', true).change();
+        else
+            $('#light_btn').prop('checked', false).change();
+       if (relays[2] ==  '1')
+            $('#co2_btn').prop('checked', true).change();
+        else
+            $('#co2_btn').prop('checked', false).change();
+ 
+    }
 
-    if (topic == "/PudzaSOI/temp") {
-        g_wtrtemp.refresh(msg);
-    }
-    else if (topic == "/PudzaSOI/ec") {
-        g_ec.refresh(msg);
-    }
-    else if (topic == "/PudzaSOI/tub") {
-        g_tub.refresh(msg);
-    }
-    else if (topic == "/PudzaSOI/ph") {
-        g_PH.refresh(msg);
-    }
-
-    else if (topic == "/PUDZAHydro/nodemcu") {
-        var vals = msg.split(",");
-        g_light.refresh(vals[0]);
-        g_gtemp.refresh(vals[1]);
-        if (vals[2] == '1') {
-            $('#mist_status').text('ON');
-        }
-        else {
-            $('#mist_status').text('OFF');
-        }
+    if (topic == "/PudzaSOI/data") {
+        var datas = msg.split(',');
+        g_wtrtemp.refresh(datas[0]);
+        g_ec.refresh(datas[1]);
+        g_tub.refresh(datas[2]);
+        g_PH.refresh(datas[3]);
     }
     else if (topic == "/PudzaSOI/eccalmsg") {
         $('#echo_eccal').text(msg);
     }
+
 });
 
 microgear.on('connected', function() {
     printMsg('Init',"Connected to NETPIE...");
-    $("#s_htmlgear").removeClass("btn-default");
-    $("#s_htmlgear").addClass("btn-warning");
     microgear.setAlias(ALIAS);
-    microgear.subscribe("/temp")        
-    microgear.subscribe("/ec");
-    microgear.subscribe("/tub");
-    microgear.subscribe("/ph");
+    microgear.subscribe("/data");
     microgear.subscribe("/cmd");
     microgear.subscribe("/eccalmsg");
 });
@@ -67,24 +63,37 @@ microgear.resettoken(function(err) {
     microgear.connect(APPID);
 });
 
+
 $("#cb").click(function () {
     console.log($('#ec_cal').val());
     microgear.publish ("/cmd", '1'+$('#ec_cal').val());
 });
 
-$("#csp_temp").click(function () {
-    console.log($('#sp_temp').val());
-    microgear.publish ("/sptemp", $('#sp_temp').val());
+
+
+$("#pump_btn").change(function () {
+//    console.log($(this).prop('checked'));
+    if ($(this).prop('checked'))
+        microgear.chat ("uno", "01");
+    else 
+        microgear.chat ("uno", "00");
 });
 
-$("#miston").click(function () {
-    console.log("on");
-    microgear.publish ("/mist", "1");
+
+$("#light_btn").change(function () {
+    console.log($(this).prop('checked'));
+    if ($(this).prop('checked'))
+        microgear.chat ("uno", "11");
+    else 
+        microgear.chat ("uno", "10");
 });
 
-$("#mistoff").click(function () {
-    console.log("off");
-    microgear.publish ("/mist", "0");
+$("#co2_btn").change(function () {
+    console.log($(this).prop('checked'));
+    if ($(this).prop('checked'))
+        microgear.chat ("uno", "21");
+    else 
+        microgear.chat ("uno", "20");
 });
 
 function printMsg(topic,msg) {

@@ -32,14 +32,12 @@ def subscription(topic,message):
   if topic == "/PudzaSOI/cmd" :
       if message[1] == "1":
          print "Calibrate"+message
-#         ser.close()
-#         ser.open()
          ser.write(message+"\r\n")	
-#        rset = True
-#      else:
-#        rset = False
-#      GPIO.output(relays[int(message[0])], rset)
+  
+  if topic == "/PudzaSOI/gearname/uno" :
+      GPIO.output(relays[int(message[0])], int(message[1]))
     
+
 def disconnect():
   print "disconnect is work"
 
@@ -47,12 +45,10 @@ microgear.setalias("uno")
 microgear.on_connect = connection
 microgear.on_message = subscription
 microgear.on_disconnect = disconnect
-microgear.subscribe("/temp");
-microgear.subscribe("/ec");
-microgear.subscribe("/tub");
-microgear.subscribe("/ph");
 microgear.subscribe("/cmd");
+microgear.subscribe("/data");
 microgear.subscribe("/eccalmsg");
+
 microgear.connect(False)
 
 while True:
@@ -72,12 +68,16 @@ while True:
     if tub < 0:
       tub = 0
 
-    data = {"temp":temp, "ec":ec, "tub":tub, "ph":ph}
-    microgear.writeFeed("SOIFeed",data)
-    microgear.publish("/temp", temp)
-    microgear.publish("/ec", ec)
-    microgear.publish("/tub", "%.2f" % tub)
-    microgear.publish("/ph", ph)
+    datastr = temp+','+ec+','+"%.2f" % tub+','+ph
+    microgear.publish("/data", datastr)
+
+    relaystatus = str(GPIO.input(relays[0]))+','
+    relaystatus += str(GPIO.input(relays[1]))+','
+    relaystatus += str(GPIO.input(relays[2]))
+    time.sleep(1)  
+    microgear.chat("web", relaystatus)
+
   else:
     microgear.publish("/eccalmsg",msg)
-  time.sleep(3)  
+    
+  time.sleep(5)  
