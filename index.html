@@ -7,6 +7,7 @@
     <meta name="author" content="">
     <title>Home | Pudza Project - SOI</title>
 	
+    
 	<!-- core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
@@ -14,6 +15,9 @@
     <link href="css/prettyPhoto.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
     <link href="css/responsive.css" rel="stylesheet">
+
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
@@ -70,99 +74,57 @@
                 <div class="col-sm-1"></div>
                 
                 <div class="col-sm-5 wow fadeInDown">
-                 <!--   
-                    <div class="accordion">
-                        <div class="panel-group" id="accordion1">
-                            <div class="panel panel-default">                            
-                                <div class="panel-heading active">
-                                  <h3 class="panel-title">
-                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapseOne1">
-                                       Live
-                                      <i class="fa fa-angle-right pull-right"></i>
-                                    </a>
-                                  </h3>
-                                </div>
-                                <div id="collapseOne1" class="panel-collapse collapse in">
-                                  <div class="panel-body">
-                                      <div class="media accordion-inner">
-                                        <img class="img-thumbnail" src="http://192.168.1.79:8080/?action=stream" />
-                                      </div>
-                                  </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
--->
-
 
                     <br>
                     
-                    <div class="accordion">
-                        
-                        <div class="panel-group" id="accordion1">
-                            <div class="panel panel-default">                            
-                                <div class="panel-heading active">
-                                  <h3 class="panel-title">
-                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion3" href="#collapseOne3" >
-                                       Control Panel
-                                      <i class="fa fa-angle-right pull-right"></i>
-                                    </a>
-                                  </h3>
-                                </div>
-
-                                <div id="collapseOne3" class="panel-collapse collapse in">
-                                  <div class="panel-body">
-                                      <div class="media accordion-inner">
-
-                                            <label class="col-sm-4 control-label">EC Calibration</label>
-                                            <div class="input-group col-sm-4">
-                                              <input type="text" class="form-control  col-sm-6" id="ec_cal">
-                                              <div class="input-group-addon">mS/cm</div>
-                                            </div>
-                                            <div class="col-sm-offset-4">
-                                                <button type="submit" class="btn btn-primary" id="cb">Start</button> 
-                                            </div>
-                                            <div class="col-sm-offset-4" id="echo_eccal"></div>
-
-                                            <hr>
-
-                                            <label class="col-sm-4 control-label">PH SP</label>
-                                            <div class="input-group col-sm-3">
-                                              <input type="text" class="form-control" id="sp_temp">
-                                              <div class="input-group-addon"></div>
-                                            </div>
-                                            <input type="button" class="btn btn-primary col-sm-offset-4" id="csp_temp" value="SET">
-                                            
-                                            <hr>
-                                            <div class="row">    
-                                                <label class="col-sm-4 control-label">Pump</label>
-                                                <div class="col-sm-8" id="mist_status">OFF</div>
-                                                <div class="col-sm-12 text-center">                                            
-                                                        <input type="button" class="btn btn-primary" value="ON" id="miston"> 
-                                                        <input type="button" class="btn btn-primary" value="OFF" id="mistoff"> 
-                                                </div>                                               
-                                            </div>
-
-
-                                      </div>
-                                    </div>
-                                </div>
-
+                <div class="accordion">
+                    
+                    <div class="panel-group" id="accordion1">
+                        <div class="panel panel-default">                            
+                            <div class="panel-heading active">
+                              <h3 class="panel-title">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion3" href="#collapseOne3" >
+                                   Control Panel
+                                  <i class="fa fa-angle-right pull-right"></i>
+                                </a>
+                              </h3>
                             </div>
-                        </div>
-                    </div>
+
+                            <div id="collapseOne3" class="panel-collapse collapse in">
+                              <div class="panel-body">
+                                  <div class="media accordion-inner">
+
+                                        <label class="col-sm-5">EC Cal (mS/cm):</label>
+                                        <input type="text" class="col-sm-7" id="ec_cal">
+                                        <button type="submit" class="btn btn-primary col-sm-offset-5" id="cb">Start</button> 
+                                        
+                                        
+                                        <div class="col-sm-offset-1" id="echo_eccal"></div>
+                                        <hr>
+                                        <input type="checkbox" data-toggle="toggle" data-on="NO" data-off="OFF"> Circulating Pump
+                                        <hr>
+                                        <input type="checkbox" data-toggle="toggle" data-on="NO" data-off="OFF"> Grow Light
+                                        <hr>
+                                        <input type="checkbox" data-toggle="toggle" data-on="Open" data-off="Close"> CO2 Valve
 
 <!--
-                    <div class="widget tags">
-                        <h3>Things Status</h3>
-                        <ul class="tag-cloud">
-                            <li><input type="button" class="btn btn-default" href="#" value="Arduino" id="s_arduino"></li>
-                            <li><input type="button" class="btn btn-default" href="#" value="NodeMCU" id="s_nodemcu"></li>
-                            <li><input type="button" class="btn btn-default" href="#" value="Reporter" id="s_reporter"></li>
-                            <li><input type="button" class="btn btn-default" href="#" value="Htmlgear" id="s_htmlgear"></li>
-                        </ul>
-                    </div>
+                                        <div class="row">    
+                                            <label class="col-sm-4 control-label">Pump</label>
+                                            <div class="col-sm-8" id="mist_status">OFF</div>
+                                            <div class="col-sm-12 text-center">                                            
+                                                    <input type="button" class="btn btn-primary" value="ON" id="miston"> 
+                                                    <input type="button" class="btn btn-primary" value="OFF" id="mistoff"> 
+                                            </div>                                               
+                                        </div>
 -->
+
+                                  </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
 
                 </div> 
             </div><!--/.row-->
@@ -235,5 +197,7 @@
     <script src="js/justgage.js"></script>
     <script src="js/microgear.js"></script>
     <script src="default.js"></script>
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
 </body>
 </html>
