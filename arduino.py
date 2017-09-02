@@ -66,14 +66,17 @@ while True:
     ec   = datalist[1]
     x  = datalist[2]
     ph   = datalist[3].rstrip()
-    x = 3.62
-    tub = -1120.4*x*x + 5742.3*x - 4352.9
+
+    X = float(x) 
+    tub = -1120.4*X*X + 5742.3*X - 4352.9
+    if tub < 0:
+      tub = 0
 
     data = {"temp":temp, "ec":ec, "tub":tub, "ph":ph}
     microgear.writeFeed("SOIFeed",data)
     microgear.publish("/temp", temp)
     microgear.publish("/ec", ec)
-    microgear.publish("/tub", tub)
+    microgear.publish("/tub", "%.2f" % tub)
     microgear.publish("/ph", ph)
   else:
     microgear.publish("/eccalmsg",msg)
