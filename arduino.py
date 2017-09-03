@@ -67,6 +67,9 @@ while True:
     tub = -1120.4*X*X + 5742.3*X - 4352.9
     if tub < 0:
       tub = 0
+# sim..........
+    ph = '7.9'
+#...............
 
     datastr = temp+','+ec+','+"%.2f" % tub+','+ph
     microgear.publish("/data", datastr)
@@ -79,5 +82,5 @@ while True:
 
   else:
     microgear.publish("/eccalmsg",msg)
-    
+
   time.sleep(5)  

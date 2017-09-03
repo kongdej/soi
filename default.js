@@ -81,7 +81,7 @@ $("#pump_btn").change(function () {
 
 
 $("#light_btn").change(function () {
-    console.log($(this).prop('checked'));
+//    console.log($(this).prop('checked'));
     if ($(this).prop('checked'))
         microgear.chat ("uno", "11");
     else 
@@ -89,11 +89,24 @@ $("#light_btn").change(function () {
 });
 
 $("#co2_btn").change(function () {
-    console.log($(this).prop('checked'));
+//    console.log($(this).prop('checked'));
     if ($(this).prop('checked'))
         microgear.chat ("uno", "21");
     else 
         microgear.chat ("uno", "20");
+});
+
+$("#mode_btn").change(function () {
+    if ($(this).prop('checked')) {
+        $('#pump_btn').bootstrapToggle('disable');
+        $('#light_btn').bootstrapToggle('disable');
+        $('#co2_btn').bootstrapToggle('disable');
+    }
+    else {
+        $('#pump_btn').bootstrapToggle('enable');
+        $('#light_btn').bootstrapToggle('enable');
+        $('#co2_btn').bootstrapToggle('enable');
+    } 
 });
 
 function printMsg(topic,msg) {
