@@ -68,7 +68,7 @@ while True:
     if tub < 0:
       tub = 0
 # sim..........
-    ph = '7.9'
+#    ph = '7.9'
 #...............
 
     datastr = temp+','+ec+','+"%.2f" % tub+','+ph

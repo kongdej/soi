@@ -145,7 +145,7 @@ var g_ec = new JustGage({
     value: 0,
     value:0,
     min: 0,
-    max: 5,
+    max: 15,
     relativeGaugeSize: true,
     gaugeWidthScale: 1,
     decimals:2,
