@@ -34,11 +34,14 @@ microgear.on('message',function(topic,msg) {
         var datas = msg.split(',');
         g_wtrtemp.refresh(datas[0]);
         g_ec.refresh(datas[1]);
-        g_tub.refresh(datas[2]);
+        g_tubv.refresh(datas[2]);
+        tub = -1120.4*datas[2]*datas[2] + 5742.3*datas[2] - 4352.9
+        g_tub.refresh(tub);
         g_PH.refresh(datas[3]);
     }
     else if (topic == "/PudzaSOI/eccalmsg") {
-        $('#echo_eccal').text(msg);
+//        $('#echo_eccal').text(msg);
+        printMsg("EC Calibrating",msg);
     }
 
 });
@@ -145,7 +148,7 @@ var g_ec = new JustGage({
     value: 0,
     value:0,
     min: 0,
-    max: 15,
+    max: 40,
     relativeGaugeSize: true,
     gaugeWidthScale: 1,
     decimals:2,
@@ -154,6 +157,21 @@ var g_ec = new JustGage({
     titlePosition: "below",
     titleFontSize: "5px",
     titleFontFamily: "Arial"
+  });
+
+var g_tubv = new JustGage({
+    id: "gaugeTubv",
+    value: 0,
+    value:0,
+    min: 0,
+    max: 5,
+    decimals:3,
+    relativeGaugeSize: true,
+    decimals:true,
+    gaugeWidthScale: 1,
+    title: "Turbidity",
+    label:"V",
+    titlePosition: "below"
   });
 
 var g_tub = new JustGage({

@@ -30,9 +30,9 @@ def connection():
 def subscription(topic,message):
   print topic+"="+message
   if topic == "/PudzaSOI/cmd" :
-    if message[0] == "1":
-      print "Calibrate" + message
-      ser.write(message+"\r\n")	
+      if message[1] == "1":
+         print "Calibrate"+message
+         ser.write(message+"\r\n")	
   
   if topic == "/PudzaSOI/gearname/uno" :
       GPIO.output(relays[int(message[0])], int(message[1]))
@@ -78,9 +78,9 @@ while True:
     relaystatus += str(GPIO.input(relays[1]))+','
     relaystatus += str(GPIO.input(relays[2]))
     time.sleep(1)  
-#    microgear.chat("web", relaystatus)
+    microgear.chat("web", relaystatus)
 
   else:
     microgear.publish("/eccalmsg",msg)
 
-  time.sleep(2)  
+  time.sleep(5)  
